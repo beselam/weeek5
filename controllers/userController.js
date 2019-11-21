@@ -2,34 +2,32 @@
 
 const userModel = require("../models/userModel");
 
-const users = userModel.users;
 
-const user_list_get = (req, res) => {
+
+const user_list_get =  async (req, res) => {
+  const users = await userModel.getAllUsers();
   res.json(users);
 };
 
-const user_get = (req, res) => {
-  const user = {
-    id: "1",
-
-    name: "John Doe",
-
-    email: "john@metropolia.fi",
-
-    password: "1234"
-  };
-
+const user_get = async (req, res) => {
+  const params  = [req.params.id]  
+  const user = await userModel.getUser(params);
   res.json(user);
 };
 
-const user_create_post = (req, res) => {
-  console.log("name", req.body.name);
+const user_create_post = async (req, res) => {
+  const name =  req.body.name;
+  const email =  req.body.email;
+  const passwd = req.body.passwd;
+ const newUser = await userModel.addUser(name,email,passwd);
+ 
+  res.send("With this endpoint you can add users."); 
+};
 
-  console.log("email", req.body.email);
-
-  console.log("passwd", req.body.passwd);
-
-  res.send("With this endpoint you can add users.");
+const user_delete = async (req, res) => {
+  const params  = [req.params.id]  
+  const user = await userModel.deletUser(params);
+  res.send("user is deleted .");
 };
 
 module.exports = {
@@ -37,5 +35,6 @@ module.exports = {
 
   user_get,
 
-  user_create_post
+  user_create_post,
+  user_delete
 };

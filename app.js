@@ -7,8 +7,10 @@ const port = 3000;
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencode
 app.use(cors());
-
+//app.use(express.bodyParser());
 const catRoute = require("./routes/catRoute");
 const userRoute = require("./routes/userRoute");
 
