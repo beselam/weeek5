@@ -16,10 +16,14 @@ const user_get = async (req, res) => {
 };
 
 const user_create_post = async (req, res) => {
-  const name =  req.body.name;
-  const email =  req.body.email;
-  const passwd = req.body.passwd;
- const newUser = await userModel.addUser(name,email,passwd);
+
+
+  const params=[
+  req.body.name,
+  req.body.email,
+  req.body.passwd
+  ];
+ const newUser = await userModel.addUser(params); 
  
   res.send("With this endpoint you can add users."); 
 };

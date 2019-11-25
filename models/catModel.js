@@ -25,11 +25,11 @@ const getCat = async (params) => {
   }
 };
 
-const addCat  = async (name,age,weight,owner,filename) => {
+const addCat  = async (params) => {
   try {
     const [result] = await promisePool.execute(
-      'INSERT INTO wop_user  (name,age,weight,owner,filename) VALUES (?,?,?,?,?)',
-      [name,age,weight,owner,filename]
+      'INSERT INTO wop_cat  (name,age,weight,owner,filename) VALUES (?,?,?,?,?);',
+      params,
     );
     return result;
   } catch (e) {
@@ -38,10 +38,24 @@ const addCat  = async (name,age,weight,owner,filename) => {
   }
 
 };
+//UPDATE `wop_cat` SET `name` = 'catyyyy', `age` = '7', `weight` = '3', `owner` = '2' WHERE `wop_cat`.`cat_id` = 7;
+const updateCat  = async (params) => {
+  try {
+    const [result] = await promisePool.query(
+     `UPDATE wop_cat SET name = ${params.name} , age= ${params.age}, weight =${params.weight} , owner =${params.owner} WHERE wop_cat.cat_id = ${params.cat_id}; `
+    );
+    return result;
+  } catch (e) {
+    console.log(e);
+    throw('db error');
+  } 
+
+};
 
 
 module.exports = {
   getAllCats,
   getCat,
-  addCat
+  addCat,
+  updateCat
 };

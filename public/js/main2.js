@@ -14,7 +14,8 @@ const createCatCards = (cats) => {
   cats.forEach((cat) => {
     // create li with DOM methods
     const img = document.createElement('img');
-    img.src = url + '/' + cat.filename;
+  img.src = url + '/' + cat.filename;
+   // img.src= cat.filename
     img.alt = cat.name;
     img.classList.add('resp');
 
@@ -61,7 +62,7 @@ const createCatCards = (cats) => {
         console.log(e.message());
       }
     });
-
+    
     const li = document.createElement('li');
     li.classList.add('light-border');
 
