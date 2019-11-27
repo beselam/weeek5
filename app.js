@@ -6,6 +6,7 @@ const app = express();
 const port = 3000;
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
+app.use('/thumbnails', express.static('thumbnails'));
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencode
