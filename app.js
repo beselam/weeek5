@@ -3,7 +3,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 3000;
+const port = 30001;
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 app.use('/thumbnails', express.static('thumbnails'));
