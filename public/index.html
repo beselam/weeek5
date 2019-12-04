@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf8">
-  <title>Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="./css/style.css" rel="stylesheet">
+  <title>Example</title>
 </head>
 <body>
-<div class="container">
-  <h1>List of cats</h1>
-  <ul>
-    <!-- js creates list here -->
-  </ul>
-  <h3>Add user</h3>
-  <form action="http://localhost:3000/user" method="post" class="light-border">
-    <input class="light-border" type="text" name="name" placeholder="Name" required>
-    <input class="light-border" type="email" name="email" placeholder="email" required>
-    <input class="light-border" type="password" name="passwd" placeholder="Password" required>
-    <button class="light-border" type="submit">Save</button>
-  </form>
-</div>
-<script src="./js/main.js"></script>
+  <div class="container">
+    <h1>List of cats</h1>
+    <ul>
+      <!-- js creates list here -->
+    </ul>
+    <h3>Add user</h3>
+    <form action="http://localhost:3000/user" method="post" class="light-border">
+      <input class="light-border" type="text" name="name" placeholder="Name" required>
+      <input class="light-border" type="email" name="email" placeholder="email" required>
+      <input class="light-border" type="password" name="passwd" placeholder="Password" required>
+      <button class="light-border" type="submit">Save</button>
+    </form>
+    <form action="http://localhost:3000/cat" method="post" enctype="multipart/form-data" class="light-border">
+      <input class="light-border" type="file" name="cat">
+      <button class="light-border" type="submit">Save</button>
+    </form>
+  </div>
+  <script src="./js/main.js"></script>
 </body>
 </html>
+
+
