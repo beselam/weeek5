@@ -16,7 +16,7 @@ const cat_list_get = async (req, res) => {
 const cat_get = async (req,res)=>{
     const params = [req.params.id];
     const cat = await catModel.getCat(params);
-    res.json(cat);
+    //res.json(cat);
 }
 
 
@@ -46,20 +46,27 @@ const cat_get = async (req,res)=>{
   };
 
   
-  const cat_create_update = async (req, res) => {
-    console.log('et put request');
+  const cat_update_put = async (req, res) => {
+  
+      const params = [
+        req.body.name,
+        req.body.age,
+        req.body.weight,
+        req.body.owner,
+        req.body.id];
+      console.log('update', params);
+      const user = await catModel.updateCat(params);
+      await res.json(user);
     
-    const params =[
-      req.body.name,
-      req.body.age,
-      req.body.weight,
-      req.body.owner,
-      req.body.cat_id
-      ];
-    const file = await catModel.updateCat(params);
-    res.send("With this endpoint you can add users.");  
   };
-
+  const cat_delete = async (req, res) => {
+    const params = [req.params.id];
+    console.log('delete', params);
+    const cat = await catModel.deleteCat(params);
+    await res.json(cat);
+  };
+  
+  
 
 
   
@@ -69,5 +76,6 @@ module.exports = {
     cat_list_get,
     cat_create_post,
     cat_get,
-    cat_create_update
+   cat_update_put,
+   cat_delete
 };

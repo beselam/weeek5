@@ -38,24 +38,35 @@ const addCat  = async (params) => {
   }
 
 };
-//UPDATE `wop_cat` SET `name` = 'catyyyy', `age` = '7', `weight` = '3', `owner` = '2' WHERE `wop_cat`.`cat_id` = 7;
-const updateCat  = async (params) => {
-  try {
-    const [result] = await promisePool.query(
-     `UPDATE wop_cat SET name = ${params.name} , age= ${params.age}, weight =${params.weight} , owner =${params.owner} WHERE wop_cat.cat_id = ${params.cat_id}; `
-    );
-    return result;
-  } catch (e) {
-    console.log(e);
-    throw('db error');
-  } 
 
+const updateCat = async (params) => {
+  try {
+    const [rows] = await promisePool.execute(
+        'UPDATE wop_cat SET name = ?, age = ?, weight = ?, owner = ? WHERE cat_id = ?;',
+        params);
+    return rows;
+  }
+  catch (e) {
+    console.log('error', e.message);
+  }
 };
 
+const deleteCat = async (params) => {
+  try {
+    const [rows] = await promisePool.execute(
+        'DELETE FROM wop_cat WHERE cat_id = ?;',
+        params);
+    return rows;
+  }
+  catch (e) {
+    console.log('error', e.message);
+  }
+};
 
 module.exports = {
   getAllCats,
   getCat,
   addCat,
-  updateCat
+  updateCat,
+  deleteCat
 };
